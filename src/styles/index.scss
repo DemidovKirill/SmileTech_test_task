@@ -1,0 +1,10 @@
+@import 'reset';
+@import 'variables';
+
+body {
+  font-family: 'Roboto', 'Oxygen', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #DBDBDB;
+  background-color: var(--app-background);
+}

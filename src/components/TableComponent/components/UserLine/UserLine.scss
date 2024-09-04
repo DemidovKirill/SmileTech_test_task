@@ -1,0 +1,15 @@
+.user {
+    width: 100%;
+    transition: all 0.1s linear;
+
+    &:hover {
+        color: var(--app-background);
+        background-color: #5ED3F3;
+        transition: all 0.1s linear;
+    }
+
+    &__cell {
+        padding: 10px 15px;
+        text-align: center;
+    }
+}
