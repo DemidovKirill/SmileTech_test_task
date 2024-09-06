@@ -1,16 +1,26 @@
+import { memo } from "react";
+import './Header.scss';
+
 interface HeaderProps {
     getUsersList: () => void;
+    filterByFirstName: (value: string) => void;
 }
 
-const Header = ({getUsersList}: HeaderProps) => {
+const Header = memo(({getUsersList, filterByFirstName}: HeaderProps) => {
     return (
-        <header className="app__header">
-            <h1 className="app__title">
+        <header className="header">
+            <h1 className="header__title">
                 Список пользователей
             </h1>
-            <button type='button' className="app__update-button" onClick={getUsersList}>Обновить</button>
+            <input
+                className="header__filter"
+                placeholder="Filter by FirstName"
+                type="text"
+                onChange={(event) => filterByFirstName(event.target.value)}
+                />
+            <button type='button' className="header__update-button" onClick={getUsersList}>Обновить</button>
         </header>
     )
-};
+});
 
 export default Header;

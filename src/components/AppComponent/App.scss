@@ -8,23 +8,4 @@
   max-width: 1120px;
   height: 100vh;
   margin: 0 auto;
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background-color: var(--secondary-background);
-    padding: 20px 30px;
-    border-radius: 25px;
-  }
-
-  &__update-button {
-    background-color: transparent;
-    border: 1px solid #5ED3F3;
-    outline: none;
-    padding: 10px 15px;
-    color: #ffffff;
-    border-radius: 10px;
-    cursor: pointer;
-  }
 }

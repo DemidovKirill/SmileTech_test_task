@@ -7,12 +7,11 @@ import UserLine from './components/UserLine/UserLine';
 interface TableProps {
     users: User[];
     loading: boolean;
-    filterList: () => void;
     sortList: (columnName: UserKey) => void;
 }
 
 const Table = memo((props: TableProps) => {
-    const {users, loading, filterList, sortList} = props;
+    const {users, loading, sortList} = props;
 
     return (
         <table className="table">
