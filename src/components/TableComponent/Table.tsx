@@ -1,35 +1,35 @@
-import {User} from '../../services/fetchUsers';
+import { memo } from 'react';
+import { User, UserKey } from '../../types/user';
 import './Table.scss';
+import TableHead from './components/TableHead/TableHead';
 import UserLine from './components/UserLine/UserLine';
 
 interface TableProps {
     users: User[];
     loading: boolean;
+    filterList: () => void;
+    sortList: (columnName: UserKey) => void;
 }
 
-const Table = ({users, loading}: TableProps) => {
-    if (loading) {
-        return (
-            <span className="loader"></span>
-        )
-    }
+const Table = memo((props: TableProps) => {
+    const {users, loading, filterList, sortList} = props;
 
     return (
         <table className="table">
-            <thead className="table__head">
-                <tr className="head__line">
-                    <th className="head__cell">ФИО</th>
-                    <th className="head__cell">Email</th>
-                    <th className="head__cell">Адрес</th>
-                    <th className="head__cell">Компания</th>
-                </tr>
-            </thead>
+            <TableHead sortList={sortList} />
             <tbody className="table__body">
-                {users && users.map((user) => {
+                {loading && (
+                    <tr className="loader-container">
+                        <td className="loader"></td>
+                    </tr>
+                )}
+                {(users && !loading) && users.map((user) => {
                     return (
                         <UserLine
                             key={user.id}
-                            name={user.name}
+                            id={user.id}
+                            firstName={user.firstName}
+                            lastName={user.lastName}
                             email={user.email}
                             address={user.address}
                             company={user.company.name}
@@ -39,6 +39,6 @@ const Table = ({users, loading}: TableProps) => {
             </tbody>
         </table>
     );
-}
+})
 
 export default Table;

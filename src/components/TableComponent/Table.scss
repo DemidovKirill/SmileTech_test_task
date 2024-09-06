@@ -1,26 +1,16 @@
 .table {
+    position: relative;
     width: 100%;
+    min-height: 450px;
     background-color: var(--secondary-background);
     border-radius: 25px;
-
-    &__head {
-
-    }
-
-    &__body {
-
-    }
 }
 
-.head {
-    &__line {
-
-    }
-
-    &__cell {
-        padding-block: 15px;
-        border-bottom: 1px solid var(--app-background);
-    }
+.loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .loader {

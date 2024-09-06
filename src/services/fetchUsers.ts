@@ -1,31 +1,38 @@
 import axios from "axios";
+import { User, UserFromApi } from "../types/user";
 
 const URL = 'https://jsonplaceholder.typicode.com/users';
 
-export interface UserAddress {
-    street: string;
-    zipcode: string;
-}
+const dataPreprocessing = (users: UserFromApi[]): User[] => {
+  return users.map(user => {
+    const firstName = user.name.split(' ')[0];
+    const lastName = user.name.split(' ')[1];
 
-export interface User {
-    id: number;
-    name: string;
-    email: string;
-    address: UserAddress;
-    company: {
-        name: string;
-    };
+    return {
+      id: user.id,
+      firstName: firstName,
+      lastName: lastName,
+      email: user.email,
+      address: {
+        street: user.address.street,
+        zipcode: user.address.zipcode
+      },
+      company: {
+        name: user.company.name
+      }
+    }
+  });
 }
 
 export const fetchUsers = async (): Promise<User[]> => {
     try {
-        const response = await axios.get<User[]>(URL);
+        const response = await axios.get<UserFromApi[]>(URL);
 
         if (!response?.data) {
           throw new Error();
         }
     
-        return response.data;
+        return dataPreprocessing(response.data);
       } catch (error) {
         return [];
       }

@@ -1,20 +1,24 @@
 import { memo } from 'react';
 import './UserLine.scss';
-import { UserAddress } from '../../../../services/fetchUsers';
+import { UserAddress } from '../../../../types/user';
 
 interface UserLineProps {
-    name: string;
+    id: number;
+    firstName: string;
+    lastName: string;
     email: string;
     address: UserAddress;
     company: string;
 }
 
 const UserLine = memo((props: UserLineProps) => {
-    const {name, email, address, company} = props;
+    const {firstName, lastName, email, address, company, id} = props;
 
     return (
         <tr className='user'>
-            <td className='user__cell user__name'>{name}</td>
+            <td className='user__cell user__id'>{id}</td>
+            <td className='user__cell user__firstname'>{firstName}</td>
+            <td className='user__cell user__lastname'>{lastName}</td>
             <td className='user__cell user__email'>{email}</td>
             <td className='user__cell user__address'>
             {address.street}{' '}{address.zipcode}
