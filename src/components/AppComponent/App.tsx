@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useMediaQuery } from 'react-responsive'
 import Table from '../TableComponent/Table';
 import { fetchUsers } from '../../services/fetchUsers';
 import './App.scss';
@@ -6,6 +7,7 @@ import Header from './components/HeaderComponent/Header';
 import { User, UserKey } from '../../types/user';
 import { handleSort } from '../../utils/utils';
 import { SortDirection, SortDirections } from '../../types/sortDirection';
+import MobileTable from '../MobileTable/MobileTable';
 
 const App = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -13,6 +15,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortDirection, setSortDirection] = useState<SortDirection>(SortDirections.ASC);
   const [sortBy, setSortBy] = useState<UserKey>();
+  const isMobile = useMediaQuery({
+    query: '(max-width: 845px)'
+  })
 
   const getUsersList = useCallback(async () => {
       setIsLoading(true);
@@ -50,7 +55,9 @@ const App = () => {
   return (
     <div className="app">
       <Header getUsersList={getUsersList} filterByFirstName={filterByFirstName} />
-      <Table users={displayedUsers} loading={isLoading} sortList={sortList} />
+      {isMobile 
+      ? (<MobileTable users={displayedUsers} loading={isLoading} sortList={sortList} />) 
+      : (<Table users={displayedUsers} loading={isLoading} sortList={sortList} />)}
     </div>
   );
 }

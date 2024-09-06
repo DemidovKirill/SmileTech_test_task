@@ -11,5 +11,10 @@
     &__cell {
         padding: 10px 15px;
         text-align: center;
+        border-right: 1px solid var(--app-background);
+
+        &:last-child {
+            border-right: none;
+        }
     }
 }

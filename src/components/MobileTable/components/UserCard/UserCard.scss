@@ -1,0 +1,27 @@
+.card {
+    flex: 1;
+    padding: 10px 15px;
+    background-color: var(--secondary-background);
+    border-radius: 10px;
+
+    &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 5px 0;
+        border-bottom: 1px solid var(--app-background);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__title {
+        color: #5ed3f3a8;
+    }
+
+    &__value {
+        text-align: right;
+    }
+}
