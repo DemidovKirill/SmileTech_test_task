@@ -14,7 +14,6 @@ const App = () => {
   const [displayedUsers, setDisplayedUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortDirection, setSortDirection] = useState<SortDirection>(SortDirections.ASC);
-  const [prevSortBy, setPrevSortBy] = useState<UserKey>();
   const isMobile = useMediaQuery({
     query: '(max-width: 845px)'
   })
@@ -33,16 +32,12 @@ const App = () => {
   }, [users]);
 
   const sortList = useCallback((currentSortBy: UserKey) => {
-    const direction = prevSortBy === currentSortBy ? sortDirection : SortDirections.ASC;
-    const sortedList = handleSort(displayedUsers, currentSortBy, direction);
+    const sortedList = handleSort(displayedUsers, currentSortBy, sortDirection);
 
     setDisplayedUsers(sortedList);
-    setPrevSortBy(currentSortBy);
+    changeSortDirection();
 
-    if (!prevSortBy || prevSortBy === currentSortBy) {
-      changeSortDirection();
-    }
-  }, [displayedUsers, prevSortBy, sortDirection]);
+  }, [displayedUsers, sortDirection]);
 
   const changeSortDirection = () => {
     setSortDirection(prev => prev === SortDirections.ASC ? SortDirections.DESC : SortDirections.ASC);
