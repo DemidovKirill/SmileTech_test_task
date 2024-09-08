@@ -1,6 +1,7 @@
+import { SortDirection, SortDirections } from "../types/sortDirection";
 import { User, UserAddress, UserCompany, UserKey, UserKeys } from "../types/user";
 
-export const handleSort = (users: User[], columnName: UserKey, sortDirection: 'asc' | 'desc'): User[] => {
+export const handleSort = (users: User[], columnName: UserKey, sortDirection: SortDirection): User[] => {
     users.sort((a, b) => {
       let firstOperand = a[columnName];
       let secondOperand = b[columnName];
@@ -21,5 +22,5 @@ export const handleSort = (users: User[], columnName: UserKey, sortDirection: 'a
       return 0;
     })
 
-    return sortDirection === 'asc' ? users : users.reverse();
+    return sortDirection === SortDirections.ASC ? users : users.reverse();
 }
