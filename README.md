@@ -1,3 +1,5 @@
+В случае если при фильтрации пользователи запрашивались с бека, можно было бы добавить debounce.
+
 ## Available Scripts
 
 In the project directory, you can run:
