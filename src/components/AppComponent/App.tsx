@@ -56,7 +56,7 @@ const App = () => {
     return (
       <div className="app">
         <Header getUsersList={getUsersList} filterByFirstName={filterByFirstName} />
-        <span className="app__empty-list">This user does not exist</span>
+        <span className="app__empty-list">The user list is empty</span>
       </div>
     );
   }

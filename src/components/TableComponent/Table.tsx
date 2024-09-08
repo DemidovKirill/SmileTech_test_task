@@ -15,7 +15,7 @@ const Table = memo((props: TableProps) => {
 
     return (
         <table className="table">
-            <TableHead sortList={sortList} />
+            {!loading && (<TableHead sortList={sortList} />)}
             <tbody className="table__body">
                 {loading && (
                     <tr className="loader-container">
