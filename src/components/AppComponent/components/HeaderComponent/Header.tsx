@@ -1,5 +1,6 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import './Header.scss';
+import debounce from "debounce";
 
 interface HeaderProps {
     getUsersList: () => void;
@@ -7,6 +8,14 @@ interface HeaderProps {
 }
 
 const Header = memo(({getUsersList, filterByFirstName}: HeaderProps) => {
+    const [filterBy, setFilterBy] = useState('');
+
+    const onInputChange = (value: string) => setFilterBy(value);
+
+    useEffect(() => {
+        filterByFirstName(filterBy);
+    }, [filterByFirstName, filterBy])
+
     return (
         <header className="header">
             <h1 className="header__title">
@@ -16,7 +25,8 @@ const Header = memo(({getUsersList, filterByFirstName}: HeaderProps) => {
                 className="header__filter"
                 placeholder="Filter by FirstName"
                 type="text"
-                onChange={(event) => filterByFirstName(event.target.value)}
+                value={filterBy}
+                onChange={(event) => onInputChange(event?.target?.value)}
                 />
             <button type='button' className="header__update-button" onClick={getUsersList}>Обновить</button>
         </header>

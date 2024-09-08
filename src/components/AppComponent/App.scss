@@ -8,4 +8,12 @@
   max-width: 1120px;
   margin: 0 auto;
   padding: 20px;
+
+  &__empty-list {
+    text-align: center;
+    width: 100%;
+    background-color: var(--secondary-background);
+    padding: 20px 30px;
+    border-radius: 25px;
+  }
 }

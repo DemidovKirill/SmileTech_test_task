@@ -52,10 +52,19 @@ const App = () => {
       getUsersList();
   }, [getUsersList]);
 
+  if (!displayedUsers.length) {
+    return (
+      <div className="app">
+        <Header getUsersList={getUsersList} filterByFirstName={filterByFirstName} />
+        <span className="app__empty-list">This user does not exist</span>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <Header getUsersList={getUsersList} filterByFirstName={filterByFirstName} />
-      {isMobile 
+      {isMobile
       ? (<MobileTable users={displayedUsers} loading={isLoading} sortList={sortList} />) 
       : (<Table users={displayedUsers} loading={isLoading} sortList={sortList} />)}
     </div>
